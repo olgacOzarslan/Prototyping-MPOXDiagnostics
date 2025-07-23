@@ -1,48 +1,63 @@
-# 🧪 Reaction Vessel Temperature Controller for Monkey-Pox Diagnostics
+# 🔥 Reaction Vessel Temperature Controller for Monkeypox Diagnostics
 
-A **low-cost**, **rapid**, and **portable point-of-care (PoC)** platform developed for the **diagnosis of the Mpox virus**.
-
-This system integrates a **LAMP assay** (Loop-mediated Isothermal Amplification) and a custom-built **portable LAMP device** engineered to apply this molecular test in remote or resource-limited settings.
+This repository contains the **hardware and software implementation** of a low-cost, portable LAMP-based diagnostic device for Monkeypox (Mpox) virus detection. The system is designed for rapid and reliable temperature control and real-time user interaction.
 
 ---
 
-## 📸 System Overview
+## 📁 Repository Structure
 
-![System Overview](Media/1.png)
-
----
-
-## 🎛️ GUI Interface – Enabling Interaction and Rapid Testing
-
-<p align="center">
-  <img src="Media/vid1.gif" width="600" alt="GUI demo">
-</p>
+### `main.py`
+- **Purpose:** Main controller for system logic.
+- **Functions:**
+  - Reads target temperature input.
+  - Sends serial commands to the Arduino microcontroller.
+  - Logs and visualizes temperature feedback.
+- **Dependencies:** Python 3, `pyserial`, `matplotlib`, `tkinter`.
 
 ---
 
-## 🔬 Positive Sample Output (Mpox)
-
-Image obtained from focusing lens showing a **positive reaction vessel** for Monkeypox.
-
-![Positive Sample](Media/2.jpeg)
-
----
-
-## 🛠️ Troubleshooting View
-
-A dedicated view showing external **microcontroller interface** used for system diagnostics and real-time debugging.
-
-![Microcontroller Debug](Media/3.jpeg)
+### `gui.py`
+- **Purpose:** Graphical User Interface for starting tests and monitoring real-time temperature.
+- **Features:**
+  - Start/stop buttons.
+  - Real-time temperature plotting.
+  - Serial connection setup.
 
 ---
 
-## 🚀 Highlights
-
-- 📍 **Portable** design suitable for field use
-- ⏱️ **Rapid amplification and detection** using LAMP
-- 💡 **User-friendly GUI** for diagnostics workflow
-- 🧰 **Hardware-software integration** with temperature control and result interpretation
+### `lamp_fw.ino`
+- **Platform:** Arduino (AVR-based board).
+- **Purpose:** Firmware controlling the heating element using a PID loop.
+- **Features:**
+  - Reads temperature from analog sensor (e.g., NTC thermistor).
+  - Controls a MOSFET/relay to regulate heating.
+  - Communicates with the Python GUI via Serial.
 
 ---
 
-> Developed for early detection and intervention in Monkeypox outbreaks, especially in low-resource environments.
+## ⚙️ How It Works
+
+1. **GUI (Python)** sends target temperature to the Arduino.
+2. **Arduino (lamp_fw.ino)** adjusts the heating based on PID control.
+3. **GUI** plots live temperature data and allows user interaction.
+
+---
+
+## 🧪 Application
+
+- Designed for **Loop-mediated Isothermal Amplification (LAMP)** assay at ~65°C.
+- Ideal for **Monkeypox PoC diagnostics** in low-resource or mobile settings.
+
+---
+
+## 🔒 License & Usage
+
+This repository is provided **only for portfolio and evaluation purposes.**  
+**Do not reuse, distribute, or modify** any of the content without explicit written permission.  
+All rights reserved © 2025 [Your Name]
+
+---
+
+## 🖼️ Demo & Visuals
+
+![GUI Preview](Media/vid1.gif)
